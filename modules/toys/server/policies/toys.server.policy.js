@@ -15,34 +15,43 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/toys',
       permissions: '*'
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/toys/:toyId',
+      permissions: '*'
+    }]
+  }, {
+    roles: ['editor'],
+    allows: [{
+      resources: '/api/toys',
+      permissions: '*'
+    }, {
+      resources: '/api/toys/:toyId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/articles',
-      permissions: ['get', 'post']
+      resources: '/api/toys',
+      permissions: ['get']
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/toys/:toyId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/toys',
       permissions: ['get']
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/toys/:toyId',
       permissions: ['get']
     }]
   }, {
     roles: ['admin','user','guest'],
     allows: [{
-      resources: '/api/articles/read-slug',
+      resources: '/api/toys/read-slug',
       permissions: ['get']
     }]
   }]);
@@ -54,8 +63,8 @@ exports.invokeRolesPolicies = function () {
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an article is being processed and the current user created it then allow any manipulation
-  if (req.article && req.user && req.article.user.id === req.user.id) {
+  // If a toy is being processed and the current user created it then allow any manipulation
+  if (req.toy && req.user && req.toy.user.id === req.user.id) {
     return next();
   }
 

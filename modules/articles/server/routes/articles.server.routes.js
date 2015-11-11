@@ -12,6 +12,8 @@ module.exports = function (app) {
     .get(articles.list)
     .post(articles.create);
 
+  app.route('/api/articles/read-slug').get(articlesPolicy.isAllowed, articles.readBySlug);
+
   // Single article routes
   app.route('/api/articles/:articleId').all(articlesPolicy.isAllowed)
     .get(articles.read)

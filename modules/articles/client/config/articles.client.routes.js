@@ -22,11 +22,11 @@ angular.module('articles').config(['$stateProvider',
         }
       })
       .state('articles.view', {
-        url: '/:articleId',
+        url: '/:articleSlug',
         templateUrl: 'modules/articles/client/views/view-article.client.view.html'
       })
       .state('articles.edit', {
-        url: '/:articleId/edit',
+        url: '/:articleSlug/edit',
         templateUrl: 'modules/articles/client/views/edit-article.client.view.html',
         data: {
           roles: ['user', 'admin']

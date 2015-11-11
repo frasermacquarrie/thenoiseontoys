@@ -18,12 +18,13 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
       // Create new Article object
       var article = new Articles({
         title: this.title,
-        content: this.content
+        content: this.content,
+        slug: this.title.toLowerCase().replace(/ /g, '-')
       });
 
       // Redirect after save
       article.$save(function (response) {
-        $location.path('articles/' + response._id);
+        $location.path('articles/' + response.slug);
 
         // Clear form fields
         $scope.title = '';
@@ -61,9 +62,10 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
       }
 
       var article = $scope.article;
+      article.slug = article.title.toLowerCase().replace(/ /g, '-');
 
       article.$update(function () {
-        $location.path('articles/' + article._id);
+        $location.path('articles/' + article.slug);
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -76,8 +78,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
     // Find existing Article
     $scope.findOne = function () {
-      $scope.article = Articles.get({
-        articleId: $stateParams.articleId
+      $scope.article = Articles.getBySlug({
+        slug: $stateParams.articleSlug
       });
     };
   }

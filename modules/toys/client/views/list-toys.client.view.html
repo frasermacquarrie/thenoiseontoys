@@ -1,0 +1,20 @@
+<section ng-controller="ToysController" ng-init="find()">
+  <div class="page-header">
+    <h1>Toys</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="toy in toys" ui-sref="toys.view({toySlug: toy.slug})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="toy.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="toy.user.displayName"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="toy.title"></h4>
+      <p class="list-group-item-text" ng-bind="toy.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="toys.$resolved && !toys.length">
+    No toys yet, why don't you <a ui-sref="toys.create">create one</a>?
+  </div>
+</section>

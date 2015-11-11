@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * Article Schema
+ * Toy Schema
  */
-var ArticleSchema = new Schema({
+var ToySchema = new Schema({
   created: {
     type: Date,
     default: Date.now
@@ -18,6 +18,7 @@ var ArticleSchema = new Schema({
     type: String,
     default: '',
     trim: true,
+    unique: 'Title already exists',
     required: 'Title cannot be blank'
   },
   content: {
@@ -33,9 +34,13 @@ var ArticleSchema = new Schema({
     type: String,
     default: '',
     trim: true,
-    unique: true,
+    unique: 'Slug already exists',
     required: 'Slug cannot be blank'
-  }
+  },
+  images: {
+    type: [String],
+    default: ['modules/toys/client/img/profile/default.png']
+  },
 });
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('Toy', ToySchema);

@@ -6,66 +6,66 @@
 var _ = require('lodash'),
   path = require('path'),
   mongoose = require('mongoose'),
-  Article = mongoose.model('Article'),
+  Toy = mongoose.model('Toy'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
- * Create a article
+ * Create a toy
  */
 exports.create = function (req, res) {
-  var article = new Article(req.body);
-  article.user = req.user;
+  var toy = new Toy(req.body);
+  toy.user = req.user;
 
-  article.save(function (err) {
+  toy.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(toy);
     }
   });
 };
 
 /**
- * Show the current article
+ * Show the current toy
  */
 exports.read = function (req, res) {
-  res.json(req.article);
+  res.json(req.toy);
 };
 
 /**
- * Update a article
+ * Update a toy
  */
 exports.update = function (req, res) {
-  var article = req.article;
+  var toy = req.toy;
 
-  article = _.extend(article, req.body);
+  toy = _.extend(toy, req.body);
 
-  article.save(function (err) {
+  toy.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(toy);
     }
   });
 };
 
 /**
- * Delete an article
+ * Delete a toy
  */
 exports.delete = function (req, res) {
-  var article = req.article;
+  var toy = req.toy;
 
-  article.remove(function (err) {
+  toy.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(toy);
     }
   });
 };
@@ -74,13 +74,13 @@ exports.delete = function (req, res) {
  * List of Articles
  */
 exports.list = function (req, res) {
-  Article.find().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+  Toy.find().sort('-created').populate('user', 'displayName').exec(function (err, toys) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(articles);
+      res.json(toys);
     }
   });
 };
@@ -88,38 +88,36 @@ exports.list = function (req, res) {
 /**
  * Article middleware
  */
-exports.articleByID = function (req, res, next, id) {
+exports.toyByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Article is invalid'
+      message: 'Toy is invalid'
     });
   }
 
-  Article.findById(id).populate('user', 'displayName').exec(function (err, article) {
+  Toy.findById(id).populate('user', 'displayName').exec(function (err, toy) {
     if (err) {
       return next(err);
-    } else if (!article) {
+    } else if (!toy) {
       return res.status(404).send({
-        message: 'No article with that identifier has been found'
+        message: 'No toy with that identifier has been found'
       });
     }
-    req.article = article;
+    req.toy = toy;
     next();
   });
 };
 
-/**
- * Get article by slug
- */
-exports.readBySlug = function(req , res){
-  Article.findOne(req.query).populate('user', 'displayName').exec(function(err, article) {
+exports.readBySlug = function(req, res){
+  Toy.findOne(req.query).populate('user', 'displayName').exec(function(err, toy) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+        message: errorHandler.getErrorMessage(err),
+        query: req.query
       });
     } else {
-      res.json(article);
+      res.json(toy);
     }
   });
 };
