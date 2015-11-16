@@ -1,0 +1,27 @@
+<section ng-controller="ManufacturersController" ng-init="findOne()">
+  <div class="page-header">
+    <h1>Edit Manufacturer</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="manufacturerForm" class="form-horizontal" ng-submit="update(manufacturerForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Name</label>
+          <input name="name" type="text" ng-model="manufacturer.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="manufacturerForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Manufacturer name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="url">Web site</label>
+          <textarea name="url" ng-model="manufacturer.url" id="url" class="form-control" cols="30" rows="10" placeholder="Web site"></textarea>
+        </div>
+
+      </fieldset>
+      
+      <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-default">
+      </div>
+    </form>
+  </div>
+</section>
