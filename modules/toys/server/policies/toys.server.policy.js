@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/toys/:toyId',
       permissions: '*'
+    }, {
+      resources: '/api/toys/:toyId/picture',
+      permissions: '*'
     }]
   }, {
     roles: ['editor'],
@@ -28,6 +31,9 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/toys/:toyId',
+      permissions: '*'
+    }, {
+      resources: '/api/toys/:toyId/picture',
       permissions: '*'
     }]
   }, {

@@ -6,7 +6,9 @@
 var _ = require('lodash'),
   path = require('path'),
   mongoose = require('mongoose'),
+  multer = require('multer'),
   Toy = mongoose.model('Toy'),
+  //ImageModel = mongoose.model('ImageModel'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -120,4 +122,59 @@ exports.readBySlug = function(req, res){
       res.json(toy);
     }
   });
+};
+
+/**
+ * Update profile picture
+ */
+exports.addImage = function (req, res) {
+  var toy = req.toy;
+
+  var message = null;
+  var uploadDest = {  
+    dest:'./modules/users/client/img/profile/uploads/',       
+    limits: {
+      fileSize: 64*1024*1024 // Max file size in bytes (64 MB)
+    }
+  };
+  var upload = multer(uploadDest).single('newProfilePicture');
+  var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+  
+  //console.log(toy._id);
+
+  // Filtering to upload only images
+  upload.fileFilter = profileUploadFileFilter;
+
+  if (toy) {
+    upload(req, res, function (uploadError) {
+      if(uploadError) {
+        return res.status(400).send({
+          message: 'Error occurred while uploading image'
+        });
+      } else {
+        //var image = new ImageModel({ url: uploadDest.dest + req.file.filename });
+        toy.images.push({ url: uploadDest.dest + req.file.filename });
+
+        toy.save(function (saveError) {
+          if (saveError) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(saveError)
+            });
+          } else {
+            req.login(req.user, function (err) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.json(req.toy);
+              }
+            });
+          }
+        });
+      }
+    });
+  } else {
+    res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
 };

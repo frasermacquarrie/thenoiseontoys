@@ -4,6 +4,9 @@
   </div>
   <div class="list-group">
     <a ng-repeat="toy in toys" ui-sref="toys.view({toySlug: toy.slug})" class="list-group-item">
+      <div>
+        <img ng-src="{{toy.images[0].url}}" />
+      </div>
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="toy.created | date:'mediumDate'"></span>
