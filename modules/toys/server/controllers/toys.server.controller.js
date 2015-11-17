@@ -6,7 +6,10 @@
 var _ = require('lodash'),
   path = require('path'),
   mongoose = require('mongoose'),
+  multer = require('multer'),
   Toy = mongoose.model('Toy'),
+  Manufacturer = mongoose.model('Manufacturer'),
+  //ImageModel = mongoose.model('ImageModel'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -74,7 +77,7 @@ exports.delete = function (req, res) {
  * List of Articles
  */
 exports.list = function (req, res) {
-  Toy.find().sort('-created').populate('user', 'displayName').exec(function (err, toys) {
+  Toy.find().sort('-created').populate('user', 'displayName').populate('manufacturer').exec(function (err, toys) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -96,7 +99,7 @@ exports.toyByID = function (req, res, next, id) {
     });
   }
 
-  Toy.findById(id).populate('user', 'displayName').exec(function (err, toy) {
+  Toy.findById(id).populate('user', 'displayName').populate('manufacturer').exec(function (err, toy) {
     if (err) {
       return next(err);
     } else if (!toy) {
@@ -110,7 +113,7 @@ exports.toyByID = function (req, res, next, id) {
 };
 
 exports.readBySlug = function(req, res){
-  Toy.findOne(req.query).populate('user', 'displayName').exec(function(err, toy) {
+  Toy.findOne(req.query).populate('user', 'displayName').populate('manufacturer').exec(function(err, toy) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err),
@@ -120,4 +123,59 @@ exports.readBySlug = function(req, res){
       res.json(toy);
     }
   });
+};
+
+/**
+ * Update profile picture
+ */
+exports.addImage = function (req, res) {
+  var toy = req.toy;
+
+  var message = null;
+  var uploadDest = {  
+    dest:'./modules/users/client/img/profile/uploads/',       
+    limits: {
+      fileSize: 64*1024*1024 // Max file size in bytes (64 MB)
+    }
+  };
+  var upload = multer(uploadDest).single('newProfilePicture');
+  var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+  
+  //console.log(toy._id);
+
+  // Filtering to upload only images
+  upload.fileFilter = profileUploadFileFilter;
+
+  if (toy) {
+    upload(req, res, function (uploadError) {
+      if(uploadError) {
+        return res.status(400).send({
+          message: 'Error occurred while uploading image'
+        });
+      } else {
+        //var image = new ImageModel({ url: uploadDest.dest + req.file.filename });
+        toy.images.push({ url: uploadDest.dest + req.file.filename });
+
+        toy.save(function (saveError) {
+          if (saveError) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(saveError)
+            });
+          } else {
+            req.login(req.user, function (err) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.json(req.toy);
+              }
+            });
+          }
+        });
+      }
+    });
+  } else {
+    res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
 };

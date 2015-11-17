@@ -14,6 +14,8 @@ module.exports = function (app) {
 
   app.route('/api/toys/read-slug').get(toysPolicy.isAllowed, toys.readBySlug);
 
+  app.route('/api/toys/:toyId/pictures').post(toysPolicy.isAllowed, toys.addImage);
+
   // Single article routes
   app.route('/api/toys/:toyId').all(toysPolicy.isAllowed)
     .get(toys.read)

@@ -6,6 +6,24 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+var ImageSchema = new Schema({
+  url: {
+    type: String,
+    default: '',
+    required: 'URL cannot be blank'
+  },
+  title: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  alt: {
+    type: String,
+    default: '',
+    trim: true
+  }
+});
+
 /**
  * Toy Schema
  */
@@ -30,6 +48,10 @@ var ToySchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  manufacturer: {
+    type: Schema.ObjectId,
+    ref: 'Manufacturer'
+  },
   slug: {
     type: String,
     default: '',
@@ -38,9 +60,9 @@ var ToySchema = new Schema({
     required: 'Slug cannot be blank'
   },
   images: {
-    type: [String],
-    default: ['modules/toys/client/img/profile/default.png']
+    type: [ImageSchema]
   },
 });
+
 
 mongoose.model('Toy', ToySchema);

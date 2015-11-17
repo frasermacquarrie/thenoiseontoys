@@ -15,49 +15,43 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/toys',
+      resources: '/api/manufacturers',
       permissions: '*'
     }, {
-      resources: '/api/toys/:toyId',
-      permissions: '*'
-    }, {
-      resources: '/api/toys/:toyId/picture',
+      resources: '/api/manufacturers/:manufacturerId',
       permissions: '*'
     }]
   }, {
     roles: ['editor'],
     allows: [{
-      resources: '/api/toys',
+      resources: '/api/manufacturers',
       permissions: '*'
     }, {
-      resources: '/api/toys/:toyId',
-      permissions: '*'
-    }, {
-      resources: '/api/toys/:toyId/picture',
+      resources: '/api/manufacturers/:manufacturerId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/toys',
+      resources: '/api/manufacturers',
       permissions: ['get']
     }, {
-      resources: '/api/toys/:toyId',
+      resources: '/api/manufacturers/:manufacturerId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/toys',
+      resources: '/api/manufacturers',
       permissions: ['get']
     }, {
-      resources: '/api/toys/:toyId',
+      resources: '/api/manufacturers/:manufacturerId',
       permissions: ['get']
     }]
   }, {
     roles: ['admin','user','guest'],
     allows: [{
-      resources: '/api/toys/read-slug',
+      resources: '/api/manufacturers/read-slug',
       permissions: ['get']
     }]
   }]);
@@ -70,7 +64,7 @@ exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
   // If a toy is being processed and the current user created it then allow any manipulation
-  if (req.toy && req.user && req.toy.user.id === req.user.id) {
+  if (req.manufacturer && req.user && req.manufacturer.user.id === req.user.id) {
     return next();
   }
 

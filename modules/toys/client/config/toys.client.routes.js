@@ -18,7 +18,7 @@ angular.module('toys').config(['$stateProvider',
         url: '/create',
         templateUrl: 'modules/toys/client/views/create-toy.client.view.html',
         data: {
-          roles: ['user', 'admin']
+          roles: ['admin']
         }
       })
       .state('toys.view', {
@@ -29,7 +29,14 @@ angular.module('toys').config(['$stateProvider',
         url: '/:toySlug/edit',
         templateUrl: 'modules/toys/client/views/edit-toy.client.view.html',
         data: {
-          roles: ['user', 'admin']
+          roles: ['admin']
+        }
+      })
+      .state('toys.pictures', {
+        url: '/:toyID/pictures',
+        templateUrl: 'modules/toys/client/views/add-image-toy.client.view.html',
+        data: {
+          roles: ['admin']
         }
       });
   }

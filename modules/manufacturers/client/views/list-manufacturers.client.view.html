@@ -1,0 +1,20 @@
+<section ng-controller="ManufacturersController" ng-init="find()">
+  <div class="page-header">
+    <h1>Toys</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="manufacturer in manufacturers" ui-sref="manufacturers.view({manufacturerSlug: manufacturer.slug})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="manufacturer.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="manufacturer.user.displayName"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="manufacturer.name"></h4>
+      <p class="list-group-item-text" ng-bind="manufacturer.url"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="manufacturers.$resolved && !manufacturers.length">
+    No toys yet, why don't you <a ui-sref="manufacturers.create">create one</a>?
+  </div>
+</section>
