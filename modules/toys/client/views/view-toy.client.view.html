@@ -19,6 +19,9 @@
       <span ng-bind="toy.user.displayName"></span>
     </em>
   </small>
+  <div>
+    <strong>Manufacturer: </strong><span ng-bind="toy.manufacturer.name"></span>
+  </div>
   <div ng-repeat="image in toy.images">
     <img ng-src="{{image.url}}" title="{{image.title}}" alt="{{image.alt}}"/>
   </div>

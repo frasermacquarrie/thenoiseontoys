@@ -74,7 +74,7 @@ exports.delete = function (req, res) {
  * List of manufacturers
  */
 exports.list = function (req, res) {
-  Manufacturer.find().sort('name').exec(function (err, manufacturers) {
+  Manufacturer.find(req.params).sort('name').exec(function (err, manufacturers) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

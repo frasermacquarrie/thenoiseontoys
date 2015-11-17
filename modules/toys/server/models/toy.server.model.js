@@ -48,6 +48,10 @@ var ToySchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  manufacturer: {
+    type: Schema.ObjectId,
+    ref: 'Manufacturer'
+  },
   slug: {
     type: String,
     default: '',

@@ -8,6 +8,7 @@ var _ = require('lodash'),
   mongoose = require('mongoose'),
   multer = require('multer'),
   Toy = mongoose.model('Toy'),
+  Manufacturer = mongoose.model('Manufacturer'),
   //ImageModel = mongoose.model('ImageModel'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -76,7 +77,7 @@ exports.delete = function (req, res) {
  * List of Articles
  */
 exports.list = function (req, res) {
-  Toy.find().sort('-created').populate('user', 'displayName').exec(function (err, toys) {
+  Toy.find().sort('-created').populate('user', 'displayName').populate('manufacturer').exec(function (err, toys) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -98,7 +99,7 @@ exports.toyByID = function (req, res, next, id) {
     });
   }
 
-  Toy.findById(id).populate('user', 'displayName').exec(function (err, toy) {
+  Toy.findById(id).populate('user', 'displayName').populate('manufacturer').exec(function (err, toy) {
     if (err) {
       return next(err);
     } else if (!toy) {
@@ -112,7 +113,7 @@ exports.toyByID = function (req, res, next, id) {
 };
 
 exports.readBySlug = function(req, res){
-  Toy.findOne(req.query).populate('user', 'displayName').exec(function(err, toy) {
+  Toy.findOne(req.query).populate('user', 'displayName').populate('manufacturer').exec(function(err, toy) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err),

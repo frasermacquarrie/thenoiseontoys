@@ -1,8 +1,8 @@
 'use strict';
 
 // Toys controller
-angular.module('toys').controller('ToysController', ['$scope', '$stateParams', '$location', '$timeout', '$window', 'Authentication', 'FileUploader', 'Toys',
-  function ($scope, $stateParams, $location, $timeout, $window, Authentication, FileUploader, Toys) {
+angular.module('toys').controller('ToysController', ['$scope', '$http', '$stateParams', '$location', '$timeout', '$window', 'Authentication', 'FileUploader', 'Toys',
+  function ($scope, $http, $stateParams, $location, $timeout, $window, Authentication, FileUploader, Toys) {
     $scope.authentication = Authentication;
 
     // Create new Toy
@@ -18,7 +18,8 @@ angular.module('toys').controller('ToysController', ['$scope', '$stateParams', '
       // Create new Toy object
       var toy = new Toys({
         title: this.title,
-        content: this.content
+        content: this.content,
+        manufacturer: this.manufacturer
       });
       toy.slug = toy.title.toLowerCase().replace(/ /g, '-');
 
@@ -29,6 +30,7 @@ angular.module('toys').controller('ToysController', ['$scope', '$stateParams', '
         // Clear form fields
         $scope.title = '';
         $scope.content = '';
+        $scope.manufacturer = '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -188,6 +190,24 @@ angular.module('toys').controller('ToysController', ['$scope', '$stateParams', '
           $location.path('toys');
         });
       } */
+    };
+
+    $scope.selected = undefined;
+    //$scope.noResults = true;
+
+    // Any function returning a promise object can be used to load values asynchronously
+    $scope.getManufacturers = function(val) {
+      
+      return $http.get('/api/manufacturers', {
+        params: {
+          name: val
+        }
+      }).then(function(response){
+        console.log(response);
+        return response.data.map(function(item){
+          return item;
+        });
+      });
     };
 
   }
