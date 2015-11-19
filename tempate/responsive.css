@@ -741,7 +741,7 @@ header .contact-details p{text-align:center; margin:0px 0px 15px;}
 
 header ul.dt-sc-social-icons li a, header ul.dt-sc-social-icons li a span{line-height:60px; height:65px;}
 
-#menu-container ul.dt-sc-social-icons{float:none; width:100%; text-align:center; margin:44px 0px 0px;}
+#menu-container ul.dt-sc-social-icons{float:none; width:100%; text-align:center; margin:0px 0px 0px;}
 
 header ul.dt-sc-social-icons li{display:inline-block; float:none;}
 

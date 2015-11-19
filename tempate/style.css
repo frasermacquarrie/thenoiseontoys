@@ -32,7 +32,7 @@
 
 body{background:#f0f3f3; color:#5c5c5c; margin:0px; padding:0px; font-family:'Lato', sans-serif; font-size:14px; line-height:22px;}
 
-.container{width:1170px; margin:0 auto;}
+.container{width:1170px; margin:0 auto; padding: 0px}
 
 article, aside, details, figcaption, figure, footer, header, menu, nav, section{display:block;}
 
@@ -162,7 +162,7 @@ header{width:100%; float:left; margin:0px; padding:0px; background:url(/modules/
 
 .is-sticky header #menu-container{height:auto;}
 
-.header_top{width:100%; float:left; padding:28px 0px; margin:0px;}
+.header_top{width:100%; float:left; padding-left:28px; margin:0px;}
 
 .logo{float:left;}
 
@@ -170,7 +170,7 @@ header{width:100%; float:left; margin:0px; padding:0px; background:url(/modules/
 
 header .contact-details .fa{margin-left:5px; color:#252525;}
 
-header .contact-details{float:right; margin:25px 0px 0px; padding:0px;}
+header .contact-details{float:right; margin:25px 0px 0px;}
 
 header .contact-details p{text-align:right; margin:0px;}
 
@@ -188,7 +188,7 @@ header ul.dt-sc-social-icons li a:hover:before{opacity:0;}
 
 header ul.dt-sc-social-icons li a:hover span{top:0px;}
 
-header ul.dt-sc-social-icons li a.facebook:before{content:url("/modules/core/client/img/icons/facebook.png")}
+header ul.dt-sc-social-icons li a.facebook:before{content:"\f166";}
 
 header ul.dt-sc-social-icons li a.youtube:before{content:"\f167";}
 
