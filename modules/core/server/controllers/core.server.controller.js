@@ -10,6 +10,15 @@ exports.renderIndex = function (req, res) {
 };
 
 /**
+ * Render the admin application page
+ */
+exports.renderAdmin = function (req, res) {
+  res.render('modules/core/server/views/admin', {
+    user: req.user || null
+  });
+};
+
+/**
  * Render the server error page
  */
 exports.renderServerError = function (req, res) {
