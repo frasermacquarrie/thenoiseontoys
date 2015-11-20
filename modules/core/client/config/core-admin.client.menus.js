@@ -2,10 +2,15 @@
 
 angular.module('core.admin').run(['Menus',
   function (Menus) {
-    Menus.addMenuItem('topbar', {
-      title: 'Admin',
-      state: 'admin',
-      type: 'dropdown',
+  	    //Adding the topbar menu
+    Menus.addMenu('admin.sidebar', {
+      roles: ['admin']
+    });
+    Menus.addMenuItem('admin.sidebar', {
+      title: 'Dashboard',
+      state: 'admin.home',
+      //type: 'dropdown',
+      icon: 'home',
       roles: ['admin']
     });
   }

@@ -1586,7 +1586,11 @@ Custom Bootstrap Badges
     min-width: 8px;
     height: 8px;
     width: 8px; }
-
+  .badge.badge-main {
+    position: absolute;
+    top: 28px;
+    right:15px;
+  }
 /* Badge variants */
 .badge-default {
   background-color: #bac3d0;

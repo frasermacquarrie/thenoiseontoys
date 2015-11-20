@@ -44,20 +44,20 @@ a:hover .header-profile-image {
 
 .social-icons-container {float: right; padding-top: 5px;}
 
-ul.social-icons li{display:inline; float:left; background-color: #FFFFFF;;}
+ul.social-icons li{float:left; background-color: #FFFFFF;;}
 
 
-ul.social-icons li:last-child{margin-right:0px;}
+ul.social-icons li:last-child{margin-right:0;}
 
 ul.social-icons li a{position:relative; border-top:5px solid; display:inline-block; width:50px; height:70px; overflow:hidden; color:#292929; line-height:65px; text-align:center; background-color:transparent; margin-top:-5px;}
 
-ul.social-icons li a:before{opacity:1; -webkit-transition:opacity .2s ease-out; -moz-transition:opacity .2s ease-out; transition:opacity .2s ease-out;}
+ul.social-icons li a:before{opacity:1; -webkit-transition:opacity .2s ease-out; -moz-transition:opacity .2s ease-out; -o-transition:opacity .2s ease-out; transition:opacity .2s ease-out;}
 
 ul.social-icons li a:hover{color:#FFFFFF;}
 
 ul.social-icons li a:hover:before{opacity:0;}
 
-ul.social-icons li a:hover span{top:0px;}
+ul.social-icons li a:hover span{top:0;}
 
 ul.social-icons li a.facebook:before{content:"\f166";}
 
@@ -67,7 +67,7 @@ ul.social-icons li a.twitter:before{content:"\f099";}
 
 ul.social-icons li a.gplus:before{content:"\f0d5";}
 
-ul.social-icons li a span{width:inherit; padding:0px 10px; height:70px; line-height:65px; bottom:auto; top:-70px; left:0px; -webkit-transition:top .3s ease-in-out; -moz-transition:top .3s ease-in-out; transition:top .3s ease-in-out; display:block; position:absolute;}
+ul.social-icons li a span{width:inherit; padding:0 10px; height:70px; line-height:65px; bottom:auto; top:-70px; left:0; -webkit-transition:top .3s ease-in-out; -moz-transition:top .3s ease-in-out; -o-transition:top .3s ease-in-out; transition:top .3s ease-in-out; display:block; position:absolute;}
 
 ul.social-icons li a.facebook span{border-color:#35538f; background:#35538f;}
 

@@ -1,0 +1,44 @@
+<div class="page-sidebar-wrapper" ng-controller="AdminSidebarController">
+    <!-- END SIDEBAR -->
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+
+        <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"ng-if="menu.shouldRender(authentication.user);">
+            <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item start open" dropdown="item.type === 'dropdown'">
+                <a ng-switch-when="dropdown" class="nav-link nav-toggle" dropdown-toggle role="button">
+                    <!--<span ng-if="item.badge" class="badge badge-main {{::item.badge.style}}">{{::item.badge.count}}</span> -->
+                    <i class="{{::item.icon}}"></i>
+                    <span class="title">{{::item.title}}</span>
+                    <span ng-if="$state.includes(item.state)" class="selected"></span>
+                    <span class="arrow" ng-class="{ open: $state.includes(item.state) }"></span>
+                </a>
+                <ul ng-switch-when="dropdown" class="sub-menu">
+                  <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(authentication.user);" ui-sref-active="active" class="nav-item start" ng-class="{ open: $state.includes(item.state), active: $state.includes(item.state) }">
+                    <a ui-sref="{{subitem.state}}" class="nav-link">
+                        <i class="{{::subitem.icon}}"></i>
+                        <span class="title">{{::subitem.title}}</span>
+                        <span ng-if="$state.includes(subitem.state);" class="selected"></span>
+                        <!--<span ng-if="subitem.badge" class="badge badge-main {{::subitem.badge.style}}">{{::subitem.badge.count}}</span> -->
+                    </a>
+                  </li>
+                </ul>
+                <a ng-switch-default class="nav-link" role="button" ui-sref="{{item.state}}" >
+                    <i class="{{::item.icon}}"></i>
+                    <span class="title">{{::item.title}}</span>
+                    <span ng-if="$state.includes(item.state)" class="selected"></span>
+                </a>
+            </li>
+
+        </ul>
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+    </div>

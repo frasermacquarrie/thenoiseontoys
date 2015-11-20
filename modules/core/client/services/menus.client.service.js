@@ -89,6 +89,8 @@ angular.module('core').service('Menus', [
         title: options.title || '',
         state: options.state || '',
         type: options.type || 'item',
+        icon: options.icon ? 'icon-' + options.icon : '',
+        badge: options.badge,
         class: options.class,
         roles: ((options.roles === null || typeof options.roles === 'undefined') ? this.defaultRoles : options.roles),
         position: options.position || 0,
@@ -121,6 +123,8 @@ angular.module('core').service('Menus', [
           this.menus[menuId].items[itemIndex].items.push({
             title: options.title || '',
             state: options.state || '',
+            icon: options.icon ? 'icon-' + options.icon : '',
+            badge: options.badge,
             roles: ((options.roles === null || typeof options.roles === 'undefined') ? this.menus[menuId].items[itemIndex].roles : options.roles),
             position: options.position || 0,
             shouldRender: shouldRender
