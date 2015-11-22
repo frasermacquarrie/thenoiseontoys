@@ -1,6 +1,5 @@
-.content {
-  margin-top: 50px;
-}
+.content{max-width:1280px;margin:auto;background-color: #FFFFFF;}
+.main{background-color: #D3D3D3;}
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -36,28 +35,90 @@ a:hover .header-profile-image {
   display: inline;
 }
 
-.header-background {background-image: url(/modules/core/client/img/template_default/flower.png); background-repeat: repeat;}
-
 .menu-bar{clear:both; background-color: #FFFFFF;}
 
-.logo-container{float: left; padding-top: 5px;}
+.logo-container{float: left; padding-top: 5px; width: 100%; background: url("/modules/core/client/img/template/header/header_bg.png");background-color: #FFFFFF;}
+.logo {width:1280px; margin:auto;}
+
+.header {background: #FFFFFF;}
+header .container{padding:0; }
+.nav-background{clear:both; float:left; width:100%; position:relative; z-index:10; box-shadow:0 4px 2px -2px #CCCCCC; -webkit-box-shadow:0 4px 2px -2px #CCCCCC; -moz-box-shadow:0 4px 2px -2px #CCCCCC; border-top:5px solid #ebebeb; background:#FFFFFF; height:70px;}
+
+.is-sticky header #menu-container{height:auto;}
+.is-sticky #menu-container{position:static !important;}
+#menu-container{position:static;max-width: 1280px;margin-left:auto;margin-right:auto;}
+.sticky-wrapper{clear:both; width:100%; z-index:9999; display:block; height:auto !important;}
+.sticky-wrapper.is-sticky header #main-menu > ul.menu > li > a{line-height:50px;}
+.is-sticky header{clear:both; width:100%;}
+
+#main-menu > ul.menu{margin:0; padding:0;background:#FFFFFF;}
+
+#main-menu > ul.menu > li{margin:0; padding:0; display:inline; float:left; position:relative;}
+
+#main-menu > ul.menu > li > a{display:block; padding:0 15px; margin:0; text-transform:uppercase; line-height:65px; color:#434343; position:relative; margin-top:-5px; border-top:5px solid #ebebeb;}
+
+#main-menu > ul.menu > li:first-child > a{padding-left:10px;}
+
+#main-menu > ul.menu > li > a:after{content:""; background:-webkit-linear-gradient(bottom, #FFFFFF -100%, #f3f3f3 89%, #FFFFFF 100%); background:-o-linear-gradient(bottom, #FFFFFF -100%, #f3f3f3 89%, #FFFFFF 100%); background:-moz-linear-gradient(bottom, #FFFFFF -100%, #f3f3f3 89%, #FFFFFF 100%); background:-ms-linear-gradient(bottom, #FFFFFF -100%, #f3f3f3 89%, #FFFFFF 100%); background:linear-gradient(bottom, #FFFFFF -100%, #f3f3f3 89%, #FFFFFF 100%); width:2px; height:38px; float:left; position:absolute; top:0; right:0; bottom:0; margin:auto;}
+
+#main-menu > ul.menu > li:last-child > a:after{background:none; width:0;}
+
+
+#main-menu > ul.menu > li.mustard > a{border-color:#f7c44e;}
+#main-menu > ul.menu > li.red > a{border-color:#f27b81;}
+
+#main-menu > ul.menu > li.current_page_item.red > a, #main-menu > ul.menu > li.red > a:hover{color:#f27b81;}
+
+#main-menu > ul.menu > li.mustard > a{border-color:#f7c44e;}
+
+#main-menu > ul.menu > li.current_page_item.mustard > a, #main-menu > ul.menu > li.mustard > a:hover{color:#f7c44e;}
+
+#main-menu > ul.menu > li.green > a{border-color:#aec158;}
+
+#main-menu > ul.menu > li.current_page_item.green > a, #main-menu > ul.menu > li.green > a:hover{color:#aec158;}
+
+#main-menu > ul.menu > li.yellow > a{border-color:#fce480;}
+
+#main-menu > ul.menu > li.current_page_item.yellow > a, #main-menu > ul.menu > li.yellow > a:hover{color:#fce480;}
+
+#main-menu > ul.menu > li.blue > a{border-color:#4cbcd4;}
+
+#main-menu > ul.menu > li.current_page_item.blue > a, #main-menu > ul.menu > li.blue > a:hover{color:#4cbcd4;}
+
+#main-menu > ul.menu > li.steelblue > a{border-color:#4c7297;}
+
+#main-menu > ul.menu > li.current_page_item.steelblue > a, #main-menu > ul.menu > li.steelblue > a:hover{color:#4c7297;}
+
+#main-menu > ul.menu > li.purple > a{border-color:#dd72b3;}
+
+#main-menu > ul.menu > li.current_page_item.purple > a, #main-menu > ul.menu > li.purple > a:hover{color:#dd72b3;}
+
+#main-menu > ul.menu > li.lavender > a{border-color:#b0b6fb;}
+
+#main-menu > ul.menu > li.current_page_item.lavender > a, #main-menu > ul.menu > li.lavender > a:hover{color:#b0b6fb;}
+
+#main-menu > ul.menu > li.pink > a{border-color:#fcc6e6;}
+
+#main-menu > ul.menu > li.current_page_item.pink > a, #main-menu > ul.menu > li.pink > a:hover{color:#fcc6e6;}
+
+header #menu-container ul.user-bar{float:right; height:60px; border-color:red; border-width:5px;display:inline-block;}
+
 
 .social-icons-container {float: right; padding-top: 5px;}
 
-ul.social-icons li{display:inline; float:left; background-color: #FFFFFF;;}
+ul.social-icons li{display:inline; float:left; background-color: #FFFFFF;}
 
-
-ul.social-icons li:last-child{margin-right:0px;}
+ul.social-icons li:last-child{margin-right:0;}
 
 ul.social-icons li a{position:relative; border-top:5px solid; display:inline-block; width:50px; height:70px; overflow:hidden; color:#292929; line-height:65px; text-align:center; background-color:transparent; margin-top:-5px;}
 
-ul.social-icons li a:before{opacity:1; -webkit-transition:opacity .2s ease-out; -moz-transition:opacity .2s ease-out; transition:opacity .2s ease-out;}
+ul.social-icons li a:before{opacity:1; -webkit-transition:opacity .2s ease-out; -moz-transition:opacity .2s ease-out; transition:opacity .2s ease-out; -o-transition: opacity .2s ease-out;}
 
 ul.social-icons li a:hover{color:#FFFFFF;}
 
 ul.social-icons li a:hover:before{opacity:0;}
 
-ul.social-icons li a:hover span{top:0px;}
+ul.social-icons li a:hover span{top:0;}
 
 ul.social-icons li a.facebook:before{content:"\f166";}
 
@@ -67,7 +128,7 @@ ul.social-icons li a.twitter:before{content:"\f099";}
 
 ul.social-icons li a.gplus:before{content:"\f0d5";}
 
-ul.social-icons li a span{width:inherit; padding:0px 10px; height:70px; line-height:65px; bottom:auto; top:-70px; left:0px; -webkit-transition:top .3s ease-in-out; -moz-transition:top .3s ease-in-out; transition:top .3s ease-in-out; display:block; position:absolute;}
+ul.social-icons li a span{width:inherit; padding:0 10px; height:70px; line-height:65px; bottom:auto; top:-70px; left:0; -webkit-transition:top .3s ease-in-out; -moz-transition:top .3s ease-in-out; transition:top .3s ease-in-out; -o-transition: top .3s ease-in-out; display:block; position:absolute;}
 
 ul.social-icons li a.facebook span{border-color:#35538f; background:#35538f;}
 

@@ -1,66 +1,60 @@
-<div class="container" ng-controller="HeaderController">
-  <div class="header-background">
+<div ng-controller="HeaderController">
+  <!-- Logo/Social Media Container -->
   <div class="logo-container">
-    <a href="index.html" title="Kids Life"><img src="/modules/core/client/img/template/header/logo.png" alt="Kids Life" title="Kids Life"></a>
+    <div class="logo">
+      <a href="index.html" title="Kids Life"><img src="/modules/core/client/img/template/header/logo.png" alt="Kids Life" title="Kids Life"></a>
+      </div>
   </div>
-  <div class="social-icons-container">
-    <ul class="social-icons">
-      <li><a href="#" title="Facebook" class="dt-sc-tooltip-top facebook"><span class="fa fa-facebook"></span></a></li>
-      <li><a href="#" title="Youtube" class="dt-sc-tooltip-top youtube"><span class="fa fa-youtube"></span></a></li>
-      <li><a href="#" title="Twitter" class="dt-sc-tooltip-top twitter"><span class="fa fa-twitter"></span></a></li>
-      <li><a href="#" title="Google Plus" class="dt-sc-tooltip-top gplus"><span class="fa fa-google-plus"></span></a></li>
-    </ul>
-  </div>
-  <div class="menu-bar">
-  <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-    <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
-      <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}}" dropdown="item.type === 'dropdown'">
-        <a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
-        <ul ng-switch-when="dropdown" class="dropdown-menu">
-          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(authentication.user);" ui-sref-active="active">
-            <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
+  <!-- End Logo/Social Container -->
+  <!-- Nav Container -->
+  <div class="nav-background"; sticky>
+  <div id="menu-container";>
+      <nav id="main-menu">
+        <ul id="menu-main-menu" class="menu" ng-if="menu.shouldRender(authentication.user);">
+          <li class="red"> <a href="index.html"> Home </a></li>
+          <li class="mustard"> <a href="about.html"> About us </a> </li>
+          <li class="green"> <a href="toys.html"> Toys </a> </li>
+          <li class="yellow"> <a href="articles.html"> Articles </a> </li>
+          <li class="last blue"><a href="portfolio-four-column.html" title="">Portfolio</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right user-bar menu" ng-hide="authentication.user">
+          <li class="lavender" ui-sref-active="active">
+          <a ui-sref="authentication.signup">Sign Up</a>
+          </li>
+          <li class="divider-vertical"></li>
+          <li class="purple last" ui-sref-active="active">
+          <a ui-sref="authentication.signin">Sign In</a>
           </li>
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
-      <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">Sign Up</a>
-      </li>
-      <li class="divider-vertical"></li>
-      <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">Sign In</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-show="authentication.user">
-      <li class="dropdown" dropdown>
-        <a class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
-          <img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image" />
-          <span ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li ui-sref-active="active">
-            <a ui-sref="settings.profile">Edit Profile</a>
-          </li>
-          <li ui-sref-active="active">
-            <a ui-sref="settings.picture">Change Profile Picture</a>
-          </li>
-          <li ui-sref-active="active" ng-show="authentication.user.provider === 'local'">
-            <a ui-sref="settings.password">Change Password</a>
-          </li>
-          <li ui-sref-active="active">
-            <a ui-sref="settings.accounts">Manage Social Accounts</a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="/api/auth/signout" target="_self">Signout</a>
+        <ul class="nav navbar-nav navbar-right user-bar menu" ng-show="authentication.user">
+          <li class="dropdown lavender" dropdown>
+            <a dropdown-toggle role="button">
+              <img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image" />
+              <span ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li ui-sref-active="active">
+                <a ui-sref="settings.profile">Edit Profile</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="settings.picture">Change Profile Picture</a>
+              </li>
+              <li ui-sref-active="active" ng-show="authentication.user.provider === 'local'">
+                <a ui-sref="settings.password">Change Password</a>
+              </li>
+              <li ui-sref-active="active">
+                <a ui-sref="settings.accounts">Manage Social Accounts</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="/api/auth/signout" target="_self">Signout</a>
+              </li>
+            </ul>
           </li>
         </ul>
-      </li>
-    </ul>
-  </nav>
-
+      </nav>
+    </div>
+    </div>
   </div>
-</div>
+  <!-- End Nav Container -->
 </div>

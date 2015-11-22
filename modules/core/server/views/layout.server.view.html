@@ -38,7 +38,7 @@
 
 <body class="main">
 
-  <header ng-include="'/modules/core/client/views/header.client.view.html'"></header>
+  <header class="header" ng-include="'/modules/core/client/views/header.client.view.html'"></header>
   <section class="main">
     <section class="content">
       {% block content %}{% endblock %}
@@ -54,6 +54,7 @@
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
   <!--Application JavaScript Files-->
+
   {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
 
   {% if livereload %}
@@ -61,6 +62,10 @@
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
   {% endif %}
 
+<!-- Other scripts -->
+<script type="text/javascript" ng-src="/public/lib/ngSticky/lib/sticky.js"></script>
+
+  <script type="text/javascript" src="/public/lib/ngSticky/dist/sticky.min.js"></script>
 </body>
 
 </html>
