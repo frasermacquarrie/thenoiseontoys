@@ -10,7 +10,7 @@ angular.module('core.admin').run(['Menus',
       title: 'Dashboard',
       state: 'admin.home',
       //type: 'dropdown',
-      icon: 'home',
+      icon: { 'simpleline': 'home' },
       roles: ['admin']
     });
   }

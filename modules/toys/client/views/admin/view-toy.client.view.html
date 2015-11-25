@@ -1,12 +1,10 @@
 <section ng-controller="ToysController" ng-init="findOne()">
-  <div class="page-header">
-    <h1 ng-bind="toy.title"></h1>
-  </div>
+  <h3 ng-bind="toy.title" class="page-title"></h3>
   <div class="pull-right" ng-show="authentication.user._id == toy.user._id">
-    <a class="btn btn-primary" ui-sref="toys.edit({toySlug: toy.slug})">
+    <a class="btn btn-primary" ui-sref="admin.toys.edit({toySlug: toy.slug})">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
-    <a class="btn btn-primary" ng-click="remove(toy);">
+    <a class="btn btn-primary" ng-click="admin.remove(toy);">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
     

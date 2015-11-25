@@ -15,6 +15,22 @@ angular.module('core.admin').controller('AdminSidebarController', ['$scope', '$s
       $scope.isCollapsed = !$scope.isCollapsed;
     };
 
+    $scope.getIcon = function (icon) {
+      if (!icon) {
+        return [];
+      }
+      if (icon.fontawesome) {
+        return ['fa', 'fa-' + icon.fontawesome];
+      }
+      if (icon.simpleline) {
+        return ['icon-' + icon.simpleline];
+      }
+      if (icon.glyphicon) {
+        return ['glyphicon', 'glyphicon-' + icon.glyphicon];
+      }
+      return [];
+    };
+
     // Collapsing the menu after navigation
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;

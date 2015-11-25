@@ -8,21 +8,21 @@ angular.module('toys.admin').run(['Menus',
       title: 'Toys',
       state: 'admin.toys',
       type: 'dropdown',
-      icon: 'rocket',
+      icon: { simpleline: 'rocket' },
     });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('admin.sidebar', 'admin.toys', {
       title: 'List Toys',
       state: 'admin.toys.list',
-      icon: 'list'
+      icon: { simpleline: 'list' }
     });
 
     // Add the dropdown create item
     Menus.addSubMenuItem('admin.sidebar', 'admin.toys', {
       title: 'Create Toy',
       state: 'admin.toys.create',
-      icon: 'plus'
+      icon: { simpleline: 'plus' }
     });
   }
 ]);

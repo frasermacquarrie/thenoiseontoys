@@ -5,12 +5,17 @@ angular.module('users.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('admin.users', {
+        abstract: true,
         url: '/users',
+        template: '<ui-view/>'
+      })
+      .state('admin.users.list', {
+        url: '',
         templateUrl: 'modules/users/client/views/admin/list-users.client.view.html',
         controller: 'UserListController'
       })
-      .state('admin.user', {
-        url: '/users/:userId',
+      .state('admin.users.view', {
+        url: '/:userId',
         templateUrl: 'modules/users/client/views/admin/view-user.client.view.html',
         controller: 'UserController',
         resolve: {
@@ -21,8 +26,8 @@ angular.module('users.admin.routes').config(['$stateProvider',
           }]
         }
       })
-      .state('admin.user-edit', {
-        url: '/users/:userId/edit',
+      .state('admin.users.edit', {
+        url: '/:userId/edit',
         templateUrl: 'modules/users/client/views/admin/edit-user.client.view.html',
         controller: 'UserController',
         resolve: {

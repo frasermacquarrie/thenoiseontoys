@@ -25,7 +25,7 @@ angular.module('manufacturers').controller('ManufacturersController', ['$scope',
 
       // Redirect after save
       manufacturer.$save(function (response) {
-        $location.path('manufacturer/' + response.slug);
+        $location.path('manufacturers' + response.slug);
 
         // Clear form fields
         $scope.name = '';

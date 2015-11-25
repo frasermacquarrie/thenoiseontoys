@@ -15,7 +15,7 @@
             <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item start open" dropdown="item.type === 'dropdown'">
                 <a ng-switch-when="dropdown" class="nav-link nav-toggle" dropdown-toggle role="button">
                     <!--<span ng-if="item.badge" class="badge badge-main {{::item.badge.style}}">{{::item.badge.count}}</span> -->
-                    <i class="{{::item.icon}}"></i>
+                    <i ng-class="{{getIcon(item.icon)}}"></i>
                     <span class="title">{{::item.title}}</span>
                     <span ng-if="$state.includes(item.state)" class="selected"></span>
                     <span class="arrow" ng-class="{ open: $state.includes(item.state) }"></span>
@@ -23,7 +23,7 @@
                 <ul ng-switch-when="dropdown" class="sub-menu">
                   <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(authentication.user);" ui-sref-active="active" class="nav-item start" ng-class="{ open: $state.includes(item.state), active: $state.includes(item.state) }">
                     <a ui-sref="{{subitem.state}}" class="nav-link">
-                        <i class="{{::subitem.icon}}"></i>
+                        <i ng-class="{{getIcon(subitem.icon)}}"></i>
                         <span class="title">{{::subitem.title}}</span>
                         <span ng-if="$state.includes(subitem.state);" class="selected"></span>
                         <!--<span ng-if="subitem.badge" class="badge badge-main {{::subitem.badge.style}}">{{::subitem.badge.count}}</span> -->
@@ -31,7 +31,7 @@
                   </li>
                 </ul>
                 <a ng-switch-default class="nav-link" role="button" ui-sref="{{item.state}}" >
-                    <i class="{{::item.icon}}"></i>
+                    <i ng-class="{{getIcon(item.icon)}}"></i>
                     <span class="title">{{::item.title}}</span>
                     <span ng-if="$state.includes(item.state)" class="selected"></span>
                 </a>
